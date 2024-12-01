@@ -54,7 +54,7 @@ const AccountInfo = () => {
   const iconButtons = [
     { name: 'Edit Profile', screen: '/edit-profile' },
     { name: 'My Clients', screen: '/clients' },
-    { name: 'Help and Support', screen: '/help' },
+
   ];
 
   if (loading) {

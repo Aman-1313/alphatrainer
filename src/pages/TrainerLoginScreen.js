@@ -52,11 +52,13 @@ export default function TrainerLoginScreen() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
           padding: '24px',
           border: '1px solid #ccc',
           borderRadius: '8px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           backgroundColor: '#fff',
+           height: '800px'
         }}
       >
         <img
@@ -111,13 +113,14 @@ export default function TrainerLoginScreen() {
 
         <Button
           variant="text"
-          color="secondary"
-          style={{ marginTop: '16px' }}
+
+          sx={{ mt: 1, textTransform: 'none' }}
           onClick={() => navigate('/trainer-signup')}
         >
           Don't have an account? Sign up
         </Button>
       </Box>
+
     </Container>
   );
 }

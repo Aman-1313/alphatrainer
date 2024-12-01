@@ -17,6 +17,7 @@ import {
   DialogTitle,
   Card,
 } from "@mui/material";
+import { auth } from '../services/firebase';
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -24,8 +25,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchDietPlanForDate, saveDietPlan, saveMeal, getMealsByName } from '../services/firebaseService'; // import the updated functions
-
+import { fetchClientData, deleteDietItems, editMealByIndex, fetchMealsForDate, saveDietPlan, saveMeal } from '../services/firebaseService'; // import the updated functions
+import ClientRow from '../components/ClientRow';
 const getWeekDates = (offset = 0) => {
   const startOfWeek = new Date();
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay() + 1 + offset * 7);
@@ -46,13 +47,13 @@ const AssignDietScreen = () => {
 
   const navigate = useNavigate();
   const [weekOffset, setWeekOffset] = useState(0);
-  const [times, setTimes] = useState(["09:00"]);
+  const [times, setTimes] = useState(["09:00", "10:00", "11:00", "12:00"]);
   const [newTime, setNewTime] = useState(""); // For inputting a new time slot
   const [meals, setMeals] = useState({});
   const [openModal, setOpenModal] = useState(false); // Control modal visibility
   const [selectedDietItem, setSelectedDietItem] = useState(null); // Store selected diet item for editing
   const [newDietItem, setNewDietItem] = useState({ name: "", calories: "", macronutrients: "", recipe: "" }); // New diet item
-
+  const [clientData, setClientData] = useState(null);
   const dates = getWeekDates(weekOffset);
   //fetch meals,
 
@@ -61,98 +62,100 @@ const AssignDietScreen = () => {
    //fetch meals,
    useEffect(() => {
      const fetchDietPlans = async () => {
-       const fetchedMeals = {};
-       const newTimes = new Set(times); // Use a Set to store unique times
+       const updatedMeals = { }; // Clone the existing state
 
        for (const date of dates) {
-         const dietPlan = await fetchDietPlanForDate(userId, date);
+         try {
+           // Wait for mealsByTime data from fetchMealsForDate
+           const mealsByTime = await fetchMealsForDate(userId, date);
 
-         if (dietPlan) {
-           // Loop through the meals and store them with the date and time as the key
-           dietPlan.meals.forEach((meal) => {
-             const key = `${date}_${meal.time}`;
+           // Process the fetched mealsByTime data
+           Object.entries(mealsByTime).forEach(([time, mealsArray]) => {
+             const key = `${date}_${time}`; // Generate the key
 
-             // Add the meal time to the Set (ensures uniqueness)
-             if(meal.time)
-                newTimes.add(meal.time);
-
-             if (!fetchedMeals[key]) {
-               fetchedMeals[key] = [];
+             if (!updatedMeals[key]) {
+               updatedMeals[key] = []; // Initialize key if not already present
              }
-             fetchedMeals[key].push(meal); // Add the meal to the corresponding key
+
+             updatedMeals[key] = [...updatedMeals[key], ...mealsArray]; // Add meals to the key
            });
+
+         } catch (error) {
+           console.error(`Error fetching meals for date ${date}:`, error);
          }
        }
 
-       // Convert the Set to an array and update the state with unique times
-       setTimes(Array.from(newTimes));
-
-
-       // Update the state with the structured fetchedMeals object
-       setMeals(fetchedMeals);
+       setMeals(updatedMeals); // Update the state after processing all dates
      };
 
      fetchDietPlans();
-   }, [userId, weekOffset]);
+   }, [userId, weekOffset, meals]);
 
+    useEffect(() => {
+      const fetchUserData = async () => {
+        try {
+          const userData = await fetchClientData(userId);
+          setClientData(userData);
+
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      };
+
+      fetchUserData();
+
+    }, [userId]);
 
 
   // Handle editing a diet item
-  const handleEditDietItem = (mealKey, index) => {
-    console.log(meals[mealKey][index])
-    setSelectedDietItem({ ...meals[mealKey][index], index, mealKey });
+  const handleEditDietItem = (mealKey, index, date, time) => {
+    setSelectedDietItem({ ...meals[mealKey][index], index, mealKey, date, time });
+    setNewDietItem((meals[mealKey][index]));
     setOpenModal(true);
   };
 
   // Update diet item in meal
   const updateDietItem = (updatedItem) => {
     const updatedMeals = { ...meals };
+    //Firebase Logic
+
+    editMealByIndex(userId, selectedDietItem.date, selectedDietItem.time, selectedDietItem.index, updatedItem);
+    // ends
     updatedMeals[selectedDietItem.mealKey][selectedDietItem.index] = updatedItem;
     setMeals(updatedMeals);
     setOpenModal(false);
+    resetDietItemState();
   };
 
   // Open modal for adding a new diet item
   const openAddDietItemModal = (date, time) => {
     resetDietItemState();
-    setNewDietItem((prev) => ({ ...prev, date, time })); // Set default date and time in the new item
+    setNewDietItem((prev) => ({ ...prev, date, time }));
     setOpenModal(true);
   };
 
   // Handle adding a new diet item
   const handleAddNewDietItem = async () => {
     const { date, time } = newDietItem;
-    if (!date || !time) return; // Ensure date and time are available
-    const newMealKey = `${date}_${time}`;
-    const updatedMeals = { ...meals };
-    updatedMeals[newMealKey] = updatedMeals[newMealKey] || [];
-    updatedMeals[newMealKey].push({
-      name: newDietItem.name,
-      calories: newDietItem.calories,
-      macronutrients: newDietItem.macronutrients,
-      recipe: newDietItem.recipe
-    });
-    // firebase logic mine!
+    if (!date || !time) {console.log("returning"); return;}
     const meal = {
        name: newDietItem.name,
        calories: newDietItem.calories,
        macronutrients: newDietItem.macronutrients,
-       recipe: newDietItem.recipe
+       recipe: newDietItem.recipe,
      };
      try{
         await saveMeal(meal);
-
+        await saveDietPlan(userId, date, time, meal);
      }catch (error) {
         console.log("Error", "Failed to save the meal. Please try again.");
      }
 
-     await saveDietPlan(userId, date, meal);
-
      //ends
 
 
-    setMeals(updatedMeals);
-    setNewDietItem({ name: "", calories: "", macronutrients: "", recipe: "", date: "", time: "" }); // Reset form
+//    setMeals(updatedMeals);
+    setNewDietItem({ name: "", calories: "", macronutrients: "", recipe: "" }); // Reset form
     setOpenModal(false); // Close the modal after adding
 
   };
@@ -172,8 +175,11 @@ const AssignDietScreen = () => {
   };
 
   // Delete a diet item
-  const deleteDietItem = (mealKey, index) => {
+  const deleteDietItem = async (mealKey, index, date, time) => {
     const updatedMeals = { ...meals };
+
+    await deleteDietItems(userId, date, time, updatedMeals[mealKey][index]);
+
     updatedMeals[mealKey].splice(index, 1); // Remove the selected item
     setMeals(updatedMeals);
   };
@@ -248,19 +254,21 @@ const AssignDietScreen = () => {
   return (
     <Box style={styles.container}>
       {/* App Bar */}
-     <div style={styles.appBar}>
+      <div style={styles.appBar}>
         <IconButton onClick={() => navigate('/trainer/account')} style={{ color: '#fff' }}>
           <MenuIcon fontSize="large" />
         </IconButton>
-        <Typography variant="h6" style={styles.appTitle}>
-          ALPHA
-        </Typography>
-     </div>
+        <Button onClick={() => navigate('/dashboard')}>
+          <Typography  variant="h6" style={styles.appTitle}>
+              ALPHA
+          </Typography>
+        </Button>
+      </div>
 
-      <Typography variant="h4" style={styles.title}>
-        Assign Diet Plan
-      </Typography>
 
+       {
+         clientData && <ClientRow client={clientData} userId={userId} trainerId={auth.currentUser?.uid} />
+       }
       {/* Navigation for Weeks */}
       <Box style={styles.navigation}>
         <IconButton onClick={() => setWeekOffset(weekOffset - 1)}>
@@ -322,13 +330,13 @@ const AssignDietScreen = () => {
                           <Box key={index} style={{ display: "flex", alignItems: "center" }}>
                             <Typography>{dietItem.name}</Typography>
                             <IconButton
-                              onClick={() => handleEditDietItem(key, index)}
+                              onClick={() => handleEditDietItem(key, index, date, time)}
                               size="small"
                             >
                               <EditIcon color="primary" />
                             </IconButton>
                             <IconButton
-                              onClick={() => deleteDietItem(key, index)}
+                              onClick={() => deleteDietItem(key, index, date, time)}
                               size="small"
                               style={styles.deleteButton}
                             >

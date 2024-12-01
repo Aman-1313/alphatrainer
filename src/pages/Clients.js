@@ -23,10 +23,12 @@ const Clients = ({ history }) => {
 
       if (trainerDoc.exists()) {
         const clientIds = trainerDoc.data().clients || [];
-        const clientsQuery = query(collection(db, 'users'), where('__name__', 'in', clientIds));
-        const querySnapshot = await getDocs(clientsQuery);
-        const fetchedClients = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-        setClients(fetchedClients);
+        if(clientIds.length > 0){
+            const clientsQuery = query(collection(db, 'users'), where('__name__', 'in', clientIds));
+            const querySnapshot = await getDocs(clientsQuery);
+            const fetchedClients = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setClients(fetchedClients);
+        }
       } else {
         console.error('Trainer not found!');
       }
@@ -71,9 +73,11 @@ const Clients = ({ history }) => {
           <IconButton onClick={() => navigate('/trainer/account')} style={{ color: '#fff' }}>
             <MenuIcon fontSize="large" />
           </IconButton>
-          <Typography variant="h6" style={styles.appTitle}>
-            ALPHA
-          </Typography>
+           <Button onClick={() => navigate('/dashboard')}>
+              <Typography  variant="h6" style={styles.appTitle}>
+                  ALPHA
+              </Typography>
+           </Button>
         </div>
 
         <Typography variant="h4" style={styles.clientsTitle}>Client List</Typography>
