@@ -1,12 +1,7 @@
 import React from 'react';
 import {
-  Container,
-  Grid,
   Typography,
   Button,
-  Card,
-  CardContent,
-  CardMedia,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -18,9 +13,14 @@ const GeneralPage = () => {
     <Box sx={styles.page}>
       {/* Navigation Bar */}
       <Box sx={styles.navbar}>
-        <Typography variant="h6" sx={styles.logo}>
-          Alpha
-        </Typography>
+        {/* Logo Section */}
+        <img 
+          src="/logo-long.png" 
+          alt="Alpha Logo" 
+          style={styles.logoImage} 
+        />
+        
+        {/* Navigation Links */}
         <Box sx={styles.navLinks}>
           <Typography variant="body1" sx={styles.navLink}>
             About Us
@@ -33,6 +33,7 @@ const GeneralPage = () => {
           </Typography>
         </Box>
       </Box>
+
 
       {/* Hero Section */}
       <Box sx={styles.heroImageContainer}>
@@ -51,63 +52,10 @@ const GeneralPage = () => {
       <img src="/apple.jpg" alt="Fitness Hero" style={styles.heroImage} />
       </Box>
 
-
-      {/* Testimonials Section */}
-      <Container sx={styles.testimonialsContainer}>
-        <Typography variant="h4" sx={styles.sectionTitle}>
-          What Our Clients Say
-        </Typography>
-        <Grid container spacing={4}>
-          {testimonials.map((testimonial, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={styles.testimonialCard}>
-                <CardContent>
-                  <Typography variant="body1" sx={styles.testimonialText}>
-                    "{testimonial.text}"
-                  </Typography>
-                  <Typography variant="body2" sx={styles.testimonialAuthor}>
-                    - {testimonial.author}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-      {/* Features Section */}
-      <Container sx={styles.featuresContainer}>
-        <Typography variant="h4" sx={styles.sectionTitle}>
-          Why Choose Us?
-        </Typography>
-        <Grid container spacing={4}>
-          {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={styles.featureCard}>
-                <CardMedia
-                  component="img"
-                  image={feature.image}
-                  alt={feature.title}
-                  sx={styles.featureImage}
-                />
-                <CardContent>
-                  <Typography variant="h6" sx={styles.featureTitle}>
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="body2" sx={styles.featureDescription}>
-                    {feature.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
       {/* Footer */}
       <Box sx={styles.footer}>
         <Typography variant="body2" sx={styles.footerText}>
-          © 2024 Alpha. All Rights Reserved.
+          © 2024 Fitealthy. All Rights Reserved.
         </Typography>
       </Box>
     </Box>
@@ -130,10 +78,10 @@ const styles = {
     backgroundColor: '#FFF',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   },
-  logo: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#000',
+  logoImage: {
+    height: '50px', // Adjust size as needed
+    objectFit: 'contain',
+    cursor: 'pointer', // Optional: Makes the logo clickable
   },
   navLinks: {
     display: 'flex',
@@ -142,6 +90,7 @@ const styles = {
   navLink: {
     fontSize: '16px',
     color: '#333',
+    fontFamily: 'Rakkas',
     cursor: 'pointer',
     '&:hover': {
       color: '#FF7000',
@@ -196,38 +145,7 @@ const styles = {
       backgroundColor: '#E56400',
     },
   },
-  testimonialsContainer: {
-    padding: '60px 20px',
-  },
-  sectionTitle: {
-    marginBottom: '40px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  testimonialCard: {
-    padding: '20px',
-    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-  },
-  testimonialText: {
-    fontStyle: 'italic',
-  },
-  testimonialAuthor: {
-    marginTop: '10px',
-    color: '#333',
-  },
-  featuresContainer: {
-    padding: '60px 20px',
-    textAlign: 'center',
-  },
-  featureCard: {
-    transition: 'transform 0.3s ease',
-    '&:hover': {
-      transform: 'scale(1.05)',
-    },
-  },
-  featureImage: {
-    height: '200px',
-  },
+  
   footer: {
     marginTop: 'auto',
     backgroundColor: '#FFF',
@@ -239,16 +157,5 @@ const styles = {
   },
 };
 
-const testimonials = [
-  { text: 'This platform made fitness so easy!', author: 'John D.' },
-  { text: 'Highly personalized and effective.', author: 'Emily R.' },
-  { text: 'The best decision I ever made!', author: 'Michael P.' },
-];
-
-const features = [
-  { image: '/nutrition.jpg', title: 'Custom Plans', description: 'Tailored to your specific goals.' },
-  { image: '/doctor.png', title: 'Expert Guidance', description: 'Work with top professionals.' },
-  { image: '/tech.png', title: 'Seamless Experience', description: 'Track progress easily.' },
-];
 
 export default GeneralPage;
