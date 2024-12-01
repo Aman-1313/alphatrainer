@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'Rakkas';
+  src: url('/Rakkas.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
