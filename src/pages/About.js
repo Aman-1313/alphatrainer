@@ -133,35 +133,34 @@ const coreValues = [
 const styles = {
   page: {
     backgroundColor: '#fff',
-    color: '#333',
     fontFamily: 'Arial, sans-serif',
   },
-    navbar: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '20px 40px',
-      backgroundColor: '#FFF',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  navbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '2em 2vw',  // Using relative units
+    backgroundColor: '#FFF',
+    boxShadow: '0 0.2em 0.4em rgba(0, 0, 0, 0.1)',
+  },
+  logoImage: {
+    height: '2vw',  // Dynamic size based on viewport width
+    objectFit: 'contain',
+    cursor: 'pointer',
+  },
+  navLinks: {
+    display: 'flex',
+    gap: '2vw',  // Dynamic gap between links
+  },
+  navLink: {
+    fontSize: '1rem',  // Using rem for better scalability
+    color: '#333',
+    fontFamily: 'Rakkas',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#FF7000',
     },
-    logoImage: {
-      height: '50px',
-      objectFit: 'contain',
-      cursor: 'pointer',
-    },
-    navLinks: {
-      display: 'flex',
-      gap: '20px',
-    },
-    navLink: {
-      fontSize: '16px',
-      color: '#333',
-      fontFamily: 'Rakkas',
-      cursor: 'pointer',
-      '&:hover': {
-        color: '#FF7000',
-      },
-    },
+  },
   heroSection: {
     display: 'flex',
     alignItems: 'center',
@@ -171,15 +170,15 @@ const styles = {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     position: 'relative',
-    margin: '100px',
+    margin: '5vw',  // Dynamic margin based on viewport width
   },
   heroCard: {
     backgroundColor: 'rgba(255, 255, 255, 0.85)', // Semi-transparent white
-    padding: '40px',
-    borderRadius: '12px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
+    padding: '4vw',
+    borderRadius: '1em', // Using em for rounded corners
+    boxShadow: '0 0.4em 1.2em rgba(0, 0, 0, 0.2)',
     textAlign: 'center',
-    maxWidth: '600px',
+    maxWidth: '90vw',  // Dynamic max width based on viewport width
     zIndex: 2, // Ensure it stays on top of the background
   },
   heroSubtitle: {
@@ -190,17 +189,17 @@ const styles = {
   },
   heroTitle: {
     fontWeight: 'bold',
-    margin: '20px 0',
+    margin: '2vw 0',  // Responsive margin
     fontFamily: 'Rakkas',
   },
   heroDescription: {
-    marginBottom: '20px',
+    marginBottom: '2vw',  // Dynamic bottom margin
     lineHeight: '1.6',
     fontFamily: 'Rakkas',
   },
   heroButtons: {
     display: 'flex',
-    gap: '20px',
+    gap: '4vw',  // Dynamic gap between buttons
     justifyContent: 'center',
   },
   getStartedButton: {
@@ -220,48 +219,44 @@ const styles = {
   },
   ourStorySection: {
     textAlign: 'center',
-    padding: '40px 20px',
-
+    padding: '4vw 2vw',  // Dynamic padding
   },
   sectionSubtitle: {
     color: '#4CAF50',
     fontWeight: 'bold',
     fontFamily: 'Rakkas',
-
   },
   sectionTitle: {
     fontFamily: 'Rakkas',
-    margin: '20px 0',
+    margin: '2vw 0',  // Responsive margin
     fontWeight: 'bold',
   },
   sectionDescription: {
     lineHeight: '1.6',
-    maxWidth: '800px',
+    maxWidth: '80vw',  // Dynamic width based on viewport width
     margin: '0 auto',
     fontFamily: 'Rakkas',
   },
   coreValuesSection: {
-    padding: '100px',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    margin: '100px',
+    position: 'relative',
+    margin: '5% auto', // Adjusted for dynamic margin
+    overflow: 'hidden',
+    width: '90%', // Dynamic width relative to parent container
     backgroundColor: '#f4f4f4',
+    textAlign: 'center',
   },
-
   valuesGrid: {
-    marginTop: '40px',
+    marginTop: '4rem',
     alignItems: 'center',
   },
   valueItem: {
     alignItems: 'center',
-    marginBottom: '40px',
-
+    marginBottom: '4vw',  // Dynamic margin between items
   },
   valueText: {
-    padding: '20px',
     fontFamily: 'Rakkas',
-     width: '60%',
+    width: '50%',
+    margin: '0 auto',
   },
   valueOverline: {
     fontWeight: 'bold',
@@ -270,7 +265,7 @@ const styles = {
     fontFamily: 'Rakkas',
   },
   valueTitle: {
-    margin: '10px 0',
+    margin: '1rem',
     fontWeight: 'bold',
     fontFamily: 'Rakkas',
     fontSize: '2rem',
@@ -283,8 +278,8 @@ const styles = {
   valueImage: {
     width: '60%',
     height: 'auto',
-    borderRadius: '12px',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+    borderRadius: '1em',  // Using em for radius
+    boxShadow: '0 0.4em 1.2em rgba(0, 0, 0, 0.1)',
   },
 };
 

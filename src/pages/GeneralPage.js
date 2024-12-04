@@ -135,34 +135,33 @@ const services = [
   },
 ];
 
-// Styles
 const styles = {
   page: {
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
     backgroundColor: '#FFF',
-    paddingBottom: '70px', // Ensure space for the fixed "Contact Us" section
+    paddingBottom: '10%', // Adjusted to make it more dynamic
   },
   navbar: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '20px 40px',
+    padding: '2em 2vw',  // Using relative units
     backgroundColor: '#FFF',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    boxShadow: '0 0.2em 0.4em rgba(0, 0, 0, 0.1)',
   },
   logoImage: {
-    height: '50px',
+    height: '2vw',  // Dynamic size based on viewport width
     objectFit: 'contain',
     cursor: 'pointer',
   },
   navLinks: {
     display: 'flex',
-    gap: '20px',
+    gap: '2vw',  // Dynamic gap between links
   },
   navLink: {
-    fontSize: '16px',
+    fontSize: '1rem',  // Using rem for better scalability
     color: '#333',
     fontFamily: 'Rakkas',
     cursor: 'pointer',
@@ -172,16 +171,16 @@ const styles = {
   },
   heroImageContainer: {
     position: 'relative',
-
-    height: '80vh',
+    margin: '5% auto', // Adjusted for dynamic margin
     overflow: 'hidden',
-     margin: '100px',
+    width: '90%', // Dynamic width relative to parent container
+    backgroundColor: '#f4f4f4',
+    textAlign: 'center',
   },
   heroImage: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-
   },
   heroImageOverlay: {
     position: 'absolute',
@@ -196,17 +195,19 @@ const styles = {
     alignItems: 'center',
     color: '#FFF',
     textAlign: 'center',
-    padding: '20px',
-
+    padding: '5%', // Adjusted padding
   },
   heroText: {
     fontWeight: 'bold',
     fontSize: '5rem',
     lineHeight: '1.2',
     fontFamily: 'Rakkas',
+    '@media (max-width: 768px)': {
+      fontSize: '3rem', // Responsive font size for smaller screens
+    },
   },
   heroSubtitle: {
-    margin: '20px 0',
+    margin: '2% 0',
     fontSize: '2rem',
     color: '#FFF',
     fontFamily: 'Rakkas',
@@ -214,9 +215,9 @@ const styles = {
   heroButton: {
     backgroundColor: '#FF7000',
     color: '#FFF',
-    padding: '10px 20px',
+    padding: '1rem 2rem',
     textTransform: 'none',
-    fontSize: '16px',
+    fontSize: '1rem',
     '&:hover': {
       backgroundColor: '#E56400',
     },
@@ -225,54 +226,57 @@ const styles = {
     fontFamily: 'Rakkas',
     fontWeight: 'bold',
     fontSize: '2rem',
-    marginBottom: '30px',
+    margin: '3%',
     color: '#333',
   },
-    servicesSection: {
-      padding: '100px',
-      margin: '100px',
-      backgroundColor: '#f4f4f4',
-      textAlign: 'center',
-    },
-    servicesGrid: {
-      marginTop: '40px',
-      alignItems: 'center',
-    },
-    serviceItem: {
-      alignItems: 'center',
-      marginBottom: '40px',
-    },
-    serviceText: {
+  servicesSection: {
+    position: 'relative',
+    margin: '5% auto', // Adjusted for dynamic margin
+    overflow: 'hidden',
+    width: '90%', // Dynamic width relative to parent container
+    backgroundColor: '#f4f4f4',
+    textAlign: 'center',
+  },
+  servicesGrid: {
+    marginTop: '4rem',
+    alignItems: 'center',
 
-      fontFamily: 'Rakkas',
-      width: '50%',
-    },
-    serviceOverline: {
-      fontWeight: 'bold',
-      color: '#4CAF50',
-      textTransform: 'uppercase',
-      fontFamily: 'Rakkas',
-    },
-    serviceTitle: {
-      margin: '10px',
-      fontWeight: 'bold',
-      fontFamily: 'Rakkas',
-      fontSize: '2rem',
-    },
-    serviceDescription: {
-      lineHeight: '1.6',
-      fontFamily: 'Rakkas',
-      fontSize: '1rem',
-    },
-    serviceImage: {
-      width: '60%',
-      height: 'auto',
-      borderRadius: '12px',
-      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    },
+  },
+  serviceItem: {
+    alignItems: 'center',
+    marginBottom: '4rem',
+  },
+  serviceText: {
+    fontFamily: 'Rakkas',
+    width: '50%',
+    margin: '0 auto', // Center the text
+  },
+  serviceOverline: {
+    fontWeight: 'bold',
+    color: '#4CAF50',
+    textTransform: 'uppercase',
+    fontFamily: 'Rakkas',
+  },
+  serviceTitle: {
+    margin: '1rem',
+    fontWeight: 'bold',
+    fontFamily: 'Rakkas',
+    fontSize: '2rem',
+  },
+  serviceDescription: {
+    lineHeight: '1.6',
+    fontFamily: 'Rakkas',
+    fontSize: '1rem',
+  },
+  serviceImage: {
+    width: '60%',
+    height: 'auto',
+    borderRadius: '12px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+  },
   footer: {
     backgroundColor: '#FFF',
-    padding: '20px',
+    padding: '2rem',
     textAlign: 'center',
   },
   footerText: {
@@ -285,16 +289,16 @@ const styles = {
     width: '100%',
     backgroundColor: '#fff',
     boxShadow: '0 -2px 4px rgba(0, 0, 0, 0.1)',
-    padding: '10px 20px',
+    padding: '2rem 4%', // Dynamic padding
     textAlign: 'center',
     zIndex: 1000,
   },
   contactButton: {
     backgroundColor: '#25D366',
     color: '#fff',
-    padding: '10px 20px',
+    padding: '1rem 2rem', // Dynamic padding
     borderRadius: '8px',
-    fontSize: '16px',
+    fontSize: '1rem', // Responsive font size
     textTransform: 'none',
     fontWeight: 'bold',
     '&:hover': {
@@ -302,5 +306,6 @@ const styles = {
     },
   },
 };
+
 
 export default GeneralPage;
