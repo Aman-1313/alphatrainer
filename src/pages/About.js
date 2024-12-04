@@ -144,7 +144,7 @@ const styles = {
     boxShadow: '0 0.2em 0.4em rgba(0, 0, 0, 0.1)',
   },
   logoImage: {
-    height: '1rem', // Dynamic size based on viewport width
+    height: '3rem', // Dynamic size based on viewport width
     objectFit: 'contain',
     cursor: 'pointer',
   },

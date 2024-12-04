@@ -40,24 +40,26 @@ const GeneralPage = () => {
         </Box>
       </Box>
 
+
       {/* Hero Section */}
-      <Box sx={styles.heroImageContainer}>
-        <Box sx={styles.heroImageOverlay}>
-          <Typography variant="h2" sx={styles.heroText}>
-            Achieve Your <br />
-            <span style={{ color: '#FF7000' }}>Fitness Goals</span>
+      <Box sx={styles.heroSection}>
+        {/* Text Content as a Card */}
+        <Box sx={styles.heroCard}>
+          <Typography variant="h2" sx={styles.heroTitle}>
+             Achieve Your <span style={{ color: '#FF7000' }}>Fitness Goals</span>
           </Typography>
-          <Typography variant="body1" sx={styles.heroSubtitle}>
+          <Typography variant="body1" sx={styles.heroDescription}>
             Your journey to a healthier life starts here. Work with experts, get personalized plans, and see real results.
           </Typography>
-          <Button variant="contained" sx={styles.heroButton}>
-            Join Now
-          </Button>
+          <Box sx={styles.heroButtons}>
+            <Button variant="contained" sx={styles.getStartedButton}>
+              Get Started Today
+            </Button>
+          </Box>
         </Box>
-        <img src="/apple.jpg" alt="Fitness Hero" style={styles.heroImage} />
       </Box>
 
-      {/* Services Section */}
+
       {/* Services Section */}
       <Box sx={styles.servicesSection}>
 
@@ -152,7 +154,7 @@ const styles = {
     boxShadow: '0 0.2em 0.4em rgba(0, 0, 0, 0.1)',
   },
   logoImage: {
-    height: '1rem',  // Dynamic size based on viewport width
+    height: '3rem',  // Dynamic size based on viewport width
     objectFit: 'contain',
     cursor: 'pointer',
   },
@@ -169,57 +171,56 @@ const styles = {
       color: '#FF7000',
     },
   },
-  heroImageContainer: {
-    position: 'relative',
-    margin: '5% auto', // Adjusted for dynamic margin
-    overflow: 'hidden',
-    width: '90%', // Dynamic width relative to parent container
-    backgroundColor: '#f4f4f4',
-    textAlign: 'center',
-  },
-  heroImage: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  },
-  heroImageOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  heroSection: {
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    color: '#FFF',
-    textAlign: 'center',
-    padding: '5%', // Adjusted padding
+    justifyContent: 'center',
+    height: '80vh', // Full screen height
+    backgroundImage: 'url("/apple.jpg")', // Replace with your image path
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    position: 'relative',
+    margin: '5vw',  // Dynamic margin based on viewport width
   },
-  heroText: {
-    fontFamily: 'Rakkas',
-    fontWeight: 'bold',
-    fontSize: '2rem',
-    margin: '3%',
-    color: '#333',
+  heroCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.85)', // Semi-transparent white
+    padding: '4vw',
+    borderRadius: '1em', // Using em for rounded corners
+    boxShadow: '0 0.4em 1.2em rgba(0, 0, 0, 0.2)',
+    textAlign: 'center',
+    maxWidth: '90vw',  // Dynamic max width based on viewport width
+    zIndex: 2, // Ensure it stays on top of the background
   },
   heroSubtitle: {
-    margin: '1rem',
+    color: '#4CAF50',
     fontWeight: 'bold',
+    textTransform: 'uppercase',
     fontFamily: 'Rakkas',
-    fontSize: '2rem',
   },
-  heroButton: {
-    backgroundColor: '#FF7000',
-    color: '#FFF',
-    padding: '1rem 2rem',
-    textTransform: 'none',
-    fontSize: '1rem',
-    '&:hover': {
-      backgroundColor: '#E56400',
+  heroTitle: {
+    fontWeight: 'bold',
+    margin: '2vw 0',  // Responsive margin
+    fontFamily: 'Rakkas',
+  },
+  heroDescription: {
+    marginBottom: '2vw',  // Dynamic bottom margin
+    lineHeight: '1.6',
+    fontFamily: 'Rakkas',
+  },
+  heroButtons: {
+    display: 'flex',
+    gap: '4vw',  // Dynamic gap between buttons
+    justifyContent: 'center',
+
+  },
+    getStartedButton: {
+      backgroundColor: '#FF7000',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#45A049',
+      },
+      fontFamily: 'Rakkas',
     },
-  },
   sectionTitle: {
     fontFamily: 'Rakkas',
     fontWeight: 'bold',
