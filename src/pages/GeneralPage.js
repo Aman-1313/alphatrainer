@@ -199,12 +199,8 @@ const styles = {
   },
   heroText: {
     fontWeight: 'bold',
-    fontSize: '5rem',
-    lineHeight: '1.2',
+    margin: '2vw 0',  // Responsive margin
     fontFamily: 'Rakkas',
-    '@media (max-width: 768px)': {
-      fontSize: '3rem', // Responsive font size for smaller screens
-    },
   },
   heroSubtitle: {
     margin: '2% 0',
