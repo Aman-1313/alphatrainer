@@ -198,19 +198,17 @@ const styles = {
     padding: '5%', // Adjusted padding
   },
   heroText: {
-    fontWeight: 'bold',
-    fontSize: '5rem',
-    lineHeight: '1.2',
     fontFamily: 'Rakkas',
-    '@media (max-width: 768px)': {
-      fontSize: '3rem', // Responsive font size for smaller screens
-    },
+    fontWeight: 'bold',
+    fontSize: '2rem',
+    margin: '3%',
+    color: '#333',
   },
   heroSubtitle: {
-    margin: '2% 0',
-    fontSize: '2rem',
-    color: '#FFF',
+    margin: '1rem',
+    fontWeight: 'bold',
     fontFamily: 'Rakkas',
+    fontSize: '2rem',
   },
   heroButton: {
     backgroundColor: '#FF7000',
