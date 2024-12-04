@@ -67,10 +67,10 @@ const TrainerSignupScreen = () => {
            height: '800px'
        }}>
        <img
-         src="/logo-white.png"
-         alt="Logo"
-         style={{ width: '40%', marginBottom: '20px' }}
-       />
+          src="/logo-long.png"
+          alt="Logo"
+          style={{ width: '80%', marginBottom: '20px' }}
+        />
         <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>
           Trainer Sign Up
         </Typography>

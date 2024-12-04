@@ -62,11 +62,11 @@ export default function TrainerLoginScreen() {
         }}
       >
         <img
-          src="/logo-white.png"
+          src="/logo-long.png"
           alt="Logo"
-          style={{ width: '40%', marginBottom: '20px' }}
+          style={{ width: '80%', marginBottom: '20px' }}
         />
-        <Typography variant="h4" gutterBottom style={{ marginBottom: '20px' }}>
+        <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>
           Trainer Login
         </Typography>
 

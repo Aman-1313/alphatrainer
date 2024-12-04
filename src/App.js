@@ -10,6 +10,7 @@ import AccountInfo from './pages/AccountInfo';
 import TrainerMeals from './pages/TrainerMeals';
 import ClientInfo from './pages/ClientInfo';
 import ChatScreen from './pages/ChatScreen';
+import AboutUs from './pages/About';
 import AssignDietScreen from './pages/AssignDietScreen';
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/trainer-signup/data-form/:trainerId" element={<TrainerDataForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/Clients" element={<Clients />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/trainer/account" element={<AccountInfo />} />
         <Route path="/meals-database" element={<TrainerMeals />} />
