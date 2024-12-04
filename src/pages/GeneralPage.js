@@ -152,7 +152,7 @@ const styles = {
     boxShadow: '0 0.2em 0.4em rgba(0, 0, 0, 0.1)',
   },
   logoImage: {
-    height: '2vw',  // Dynamic size based on viewport width
+    height: '1rem',  // Dynamic size based on viewport width
     objectFit: 'contain',
     cursor: 'pointer',
   },
@@ -199,8 +199,12 @@ const styles = {
   },
   heroText: {
     fontWeight: 'bold',
-    margin: '2vw 0',  // Responsive margin
+    fontSize: '5rem',
+    lineHeight: '1.2',
     fontFamily: 'Rakkas',
+    '@media (max-width: 768px)': {
+      fontSize: '3rem', // Responsive font size for smaller screens
+    },
   },
   heroSubtitle: {
     margin: '2% 0',
