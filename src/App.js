@@ -11,6 +11,7 @@ import TrainerMeals from './pages/TrainerMeals';
 import ClientInfo from './pages/ClientInfo';
 import ChatScreen from './pages/ChatScreen';
 import AboutUs from './pages/About';
+import DeleteAccount from './pages/DeleteAccount';
 import AssignDietScreen from './pages/AssignDietScreen';
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/Clients" element={<Clients />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/delete-account" element={<DeleteAccount />} />
         <Route path="/trainer/account" element={<AccountInfo />} />
         <Route path="/meals-database" element={<TrainerMeals />} />
         <Route path="/trainer/assign-diet/:userId" element={<AssignDietScreen />} />
