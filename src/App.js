@@ -13,6 +13,7 @@ import ChatScreen from './pages/ChatScreen';
 import AboutUs from './pages/About';
 import DeleteAccount from './pages/DeleteAccount';
 import AssignDietScreen from './pages/AssignDietScreen';
+import TermsAndConditions from './pages/TermsAndConditions';
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/Clients" element={<Clients />} />
         <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/policy-details" element={<TermsAndConditions />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/delete-account" element={<DeleteAccount />} />
         <Route path="/trainer/account" element={<AccountInfo />} />

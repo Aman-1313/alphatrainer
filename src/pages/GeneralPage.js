@@ -34,6 +34,9 @@ const GeneralPage = () => {
           <Typography onClick={() => navigate('/AboutUs')} variant="body1" sx={styles.navLink}>
             About Us
           </Typography>
+          <Typography onClick={() => navigate('/policy-details')} variant="body1" sx={styles.navLink}>
+            Terms & Conditions
+          </Typography>
           <Typography onClick={() => navigate('/trainer-login')} variant="body1" sx={styles.navLink}>
             Trainers
           </Typography>
