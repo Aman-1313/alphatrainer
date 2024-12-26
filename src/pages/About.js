@@ -1,31 +1,51 @@
 import React from 'react';
 import { Box, Typography, Button, Grid, } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom'
 const AboutUs = () => {
-  const navigate = useNavigate();
+
   return (
     <Box sx={styles.page}>
       { /* Navigation Bar */}
-      <Box sx={styles.navbar}>
-        {/* Logo Section */}
-        <img
-          src="/logo-long.png"
-          alt="Alpha Logo"
-          style={styles.logoImage}
-          onClick={() => navigate('/')}
-        />
-
-        {/* Navigation Links */}
-        <Box sx={styles.navLinks}>
-          <Typography onClick={() => navigate('/AboutUs')} variant="body1" sx={styles.navLink}>
-            About Us
-          </Typography>
-          <Typography onClick={() => navigate('/trainer-login')} variant="body1" sx={styles.navLink}>
-            Trainers
-          </Typography>
-
-        </Box>
-      </Box>
+      <>
+          <nav className="navbar py-0 navbar-expand-lg navbar-light bg-light fixed-top">
+              <div className="container-fluid">
+                  <Link data-aos="fade-right" className="navbar-brand navbar-brand d-flex justify-content-center align-items-center" >
+                      <p className="logo ms-2 mt-4">
+                      <span className="text-primary">Fit</span><span>ealthy</span>
+                      </p>
+                  </Link>
+                  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                  </button>
+                  <div className="animate__animated animate__fadeInRightBig collapse navbar-collapse mt-4 mt-lg-0" id="navbarColor03">
+                  <ul className="navbar-nav ms-auto">
+                      <li className="nav-item">
+                          <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/">Home <ion-icon class="ms-1" name="home-outline"></ion-icon>
+                          </Link>
+                      </li>
+                      <li className="nav-item">
+                          <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/AboutUs">About Us <ion-icon class="ms-1" name="globe-outline"></ion-icon>
+                          </Link>
+                      </li>
+                      <li className="nav-item">
+                          <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/policy-details">Terms & Conditions  <ion-icon class="ms-1" name="people-outline"></ion-icon>
+                          </Link>
+                      </li>
+                      <li className="nav-item">
+                          <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/privacy-policy">Privacy Policy <ion-icon class="ms-1" name="log-in-outline"></ion-icon>
+                          </Link>
+                      </li>
+                       <li className="nav-item">
+                          <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/trainer-login">Trainers <ion-icon class="ms-1" name="aperture-outline"></ion-icon>
+                          </Link>
+                      </li>
+                  </ul>
+                  </div>
+              </div>
+          </nav>
+          <br /><br /> <br />
+      </>
       {/* Hero Section */}
       <Box sx={styles.heroSection}>
         {/* Text Content as a Card */}

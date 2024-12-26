@@ -5,14 +5,15 @@ import {
   Grid
 } from '@mui/material';
 import { Box } from '@mui/system';
-import { useNavigate } from 'react-router-dom';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import ContactUs from './ContactUs';
+import { Link } from 'react-router-dom'
 const GeneralPage = () => {
-  const navigate = useNavigate();
+
 
   const openWhatsApp = () => {
-    const phoneNumber = '917837500013'; // Replace with your business WhatsApp number
+    const phoneNumber = '14315574644'; // Replace with your business WhatsApp number
     const message = 'Hello, I would like to get more information about the plans.';
     const url = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -20,28 +21,45 @@ const GeneralPage = () => {
 
   return (
     <Box sx={styles.page}>
-      {/* Navigation Bar */}
-      <Box sx={styles.navbar}>
-        {/* Logo Section */}
-        <img
-          src="/logo-long.png"
-          alt="Alpha Logo"
-          style={styles.logoImage}
-        />
-
-        {/* Navigation Links */}
-        <Box sx={styles.navLinks}>
-          <Typography onClick={() => navigate('/AboutUs')} variant="body1" sx={styles.navLink}>
-            About Us
-          </Typography>
-          <Typography onClick={() => navigate('/policy-details')} variant="body1" sx={styles.navLink}>
-            Terms & Conditions
-          </Typography>
-          <Typography onClick={() => navigate('/trainer-login')} variant="body1" sx={styles.navLink}>
-            Trainers
-          </Typography>
-        </Box>
-      </Box>
+        <>
+            <nav className="navbar py-0 navbar-expand-lg navbar-light bg-light fixed-top">
+                <div className="container-fluid">
+                    <Link data-aos="fade-right" className="navbar-brand navbar-brand d-flex justify-content-center align-items-center" >
+                        <p className="logo ms-2 mt-4">
+                        <span className="text-primary">Fit</span><span>ealthy</span>
+                        </p>
+                    </Link>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="animate__animated animate__fadeInRightBig collapse navbar-collapse mt-4 mt-lg-0" id="navbarColor03">
+                    <ul className="navbar-nav ms-auto">
+                        <li className="nav-item">
+                            <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/">Home <ion-icon class="ms-1" name="home-outline"></ion-icon>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/AboutUs">About Us <ion-icon class="ms-1" name="globe-outline"></ion-icon>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/policy-details">Terms & Conditions  <ion-icon class="ms-1" name="people-outline"></ion-icon>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/privacy-policy">Privacy Policy <ion-icon class="ms-1" name="log-in-outline"></ion-icon>
+                            </Link>
+                        </li>
+                         <li className="nav-item">
+                            <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/trainer-login">Trainers <ion-icon class="ms-1" name="aperture-outline"></ion-icon>
+                            </Link>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+            <br /><br /> <br />
+        </>
 
 
       {/* Hero Section */}
@@ -94,11 +112,17 @@ const GeneralPage = () => {
           ))}
         </Grid>
       </Box>
-
+      <ContactUs/>
       {/* Footer */}
       <Box sx={styles.footer}>
         <Typography variant="body2" sx={styles.footerText}>
           © 2024 Fitealthy. All Rights Reserved.
+        </Typography>
+        <Typography  sx={styles.footerText}>
+         Email: info@fitealthy.com
+        </Typography>
+        <Typography  sx={styles.footerText}>
+         Located at: #3 village Daria, Chandigarh
         </Typography>
       </Box>
 
