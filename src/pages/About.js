@@ -20,10 +20,7 @@ const AboutUs = () => {
                   </button>
                   <div className="animate__animated animate__fadeInRightBig collapse navbar-collapse mt-4 mt-lg-0" id="navbarColor03">
                   <ul className="navbar-nav ms-auto">
-                      <li className="nav-item">
-                          <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/">Home <ion-icon class="ms-1" name="home-outline"></ion-icon>
-                          </Link>
-                      </li>
+
                       <li className="nav-item">
                           <Link className="nav-link rounded-pill active mt-2 mt-lg-0 flex-center" to="/AboutUs">About Us <ion-icon class="ms-1" name="globe-outline"></ion-icon>
                           </Link>
